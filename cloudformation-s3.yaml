@@ -1,0 +1,121 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'PROG 8870 Final Project - S3 Buckets with CloudFormation'
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: 'prog8870-final'
+    Description: 'Name of the project'
+  
+  Environment:
+    Type: String
+    Default: 'dev'
+    Description: 'Environment name'
+    AllowedValues:
+      - dev
+      - staging
+      - prod
+
+Resources:
+  # S3 Bucket 1
+  S3Bucket1:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${ProjectName}-cf-bucket-1-${AWS::StackName}'
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      Tags:
+        - Key: Name
+          Value: !Sub '${ProjectName}-cf-bucket-1'
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: Project
+          Value: !Ref ProjectName
+        - Key: ManagedBy
+          Value: 'CloudFormation'
+
+  # S3 Bucket 2
+  S3Bucket2:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${ProjectName}-cf-bucket-2-${AWS::StackName}'
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      Tags:
+        - Key: Name
+          Value: !Sub '${ProjectName}-cf-bucket-2'
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: Project
+          Value: !Ref ProjectName
+        - Key: ManagedBy
+          Value: 'CloudFormation'
+
+  # S3 Bucket 3
+  S3Bucket3:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${ProjectName}-cf-bucket-3-${AWS::StackName}'
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      Tags:
+        - Key: Name
+          Value: !Sub '${ProjectName}-cf-bucket-3'
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: Project
+          Value: !Ref ProjectName
+        - Key: ManagedBy
+          Value: 'CloudFormation'
+
+Outputs:
+  S3Bucket1Name:
+    Description: 'Name of S3 Bucket 1'
+    Value: !Ref S3Bucket1
+    Export:
+      Name: !Sub '${AWS::StackName}-S3Bucket1Name'
+
+  S3Bucket2Name:
+    Description: 'Name of S3 Bucket 2'
+    Value: !Ref S3Bucket2
+    Export:
+      Name: !Sub '${AWS::StackName}-S3Bucket2Name'
+
+  S3Bucket3Name:
+    Description: 'Name of S3 Bucket 3'
+    Value: !Ref S3Bucket3
+    Export:
+      Name: !Sub '${AWS::StackName}-S3Bucket3Name'
+
+  S3Bucket1Arn:
+    Description: 'ARN of S3 Bucket 1'
+    Value: !GetAtt S3Bucket1.Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-S3Bucket1Arn'
+
+  S3Bucket2Arn:
+    Description: 'ARN of S3 Bucket 2'
+    Value: !GetAtt S3Bucket2.Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-S3Bucket2Arn'
+
+  S3Bucket3Arn:
+    Description: 'ARN of S3 Bucket 3'
+    Value: !GetAtt S3Bucket3.Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-S3Bucket3Arn'

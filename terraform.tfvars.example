@@ -1,0 +1,38 @@
+# Terraform variables values template
+# Copy this file to terraform.tfvars and customize the values
+# Note: terraform.tfvars is in .gitignore to prevent committing sensitive data
+
+aws_region = "us-east-1"
+project_name = "prog8870-final"
+environment = "dev"
+
+# VPC Configuration
+vpc_cidr = "10.0.0.0/16"
+public_subnet_cidr = "10.0.1.0/24"
+private_subnet_cidrs = ["10.0.2.0/24", "10.0.3.0/24"]
+
+# Availability Zones
+availability_zone = "us-east-1a"
+availability_zones = ["us-east-1a", "us-east-1b"]
+
+# EC2 Configuration
+ec2_instance_type = "t2.micro"
+ec2_volume_size = 8
+key_pair_name = "your-key-pair-name-here"
+
+# RDS Configuration
+rds_instance_class = "db.t3.micro"
+rds_allocated_storage = 20
+db_name = "prog8870db"
+db_username = "admin"
+
+# IMPORTANT: Set db_password via environment variable or command line
+# Example: export TF_VAR_db_password="your-secure-password"
+# Or: terraform apply -var="db_password=your-secure-password"
+
+# Password requirements:
+# - At least 8 characters
+# - Contains uppercase and lowercase letters
+# - Contains numbers
+# - Contains special characters
+# Example: "MySecurePass123!"
